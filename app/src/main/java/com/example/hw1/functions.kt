@@ -9,9 +9,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.magnifier
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,24 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Screen(myList: SnapshotStateList<Int>, numberOfColumns: Int){
-    LazyColumn(Modifier.fillMaxSize()) {
-        item {
-            CreateList(myList = myList, numberOfColumns = numberOfColumns)
-        }
-        item{
-            Button(
-                onClick = { myList.add(myList.size+1) }) {
-                Text(text = stringResource(R.string.button),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold)
-            }
-        }
-    }
-}
-
-@Composable
-fun CreateList(myList: SnapshotStateList<Int>, numberOfColumns: Int){
+fun CreateList(myList: List<Int>, numberOfColumns: Int){
     myList.chunked(numberOfColumns).forEach { chunk ->
         Row(Modifier.fillMaxWidth()){
             chunk.forEach { one ->
@@ -72,7 +60,7 @@ fun CreateList(myList: SnapshotStateList<Int>, numberOfColumns: Int){
     }
 }
 
-@Composable
+/*@Composable
 @Preview(
     showBackground = true,
     showSystemUi = true
@@ -80,6 +68,8 @@ fun CreateList(myList: SnapshotStateList<Int>, numberOfColumns: Int){
 private fun ScreenPreview(){
     val myList = remember { mutableStateListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) }
     val numberOfColumns = if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT) 3 else 4
-    Screen(myList, numberOfColumns)
+    //Screen(myList, numberOfColumns)
 }
+
+ */
 
